@@ -1,298 +1,751 @@
- * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f7fb;
-}
+/* =================================
+   GENERAL APPLICATION
+================================= */
 
 .App {
   min-height: 100vh;
+  width: 100%;
+  padding: 30px;
 }
 
-.navbar {
-  background-color: #1e293b;
-  color: white;
-  padding: 20px 40px;
+.lecturer-dashboard,
+.student-dashboard,
+.admin-dashboard {
+  width: 100%;
+  max-width: 1450px;
+  margin: auto;
+  padding: 35px;
+}
 
+section {
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+h2 {
+  font-size: 21px;
+  color: var(--primary);
+  margin-bottom: 18px;
+}
+
+h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* =================================
+   DASHBOARD HEADER
+================================= */
+
+.lecturer-dashboard header,
+.student-dashboard header,
+.admin-dashboard header,
+.navbar {
+  background: var(--primary);
+  color: white;
+  padding: 25px 35px;
+  border-radius: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
 }
 
+header h1,
 .navbar h1 {
+  color: white;
+}
+
+header p,
+.navbar p {
+  color: #cbd5e1;
+}
+
+header button,
+.navbar button {
+  background: var(--accent);
+  color: var(--primary);
+  border: none;
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+header button:hover,
+.navbar button:hover {
+  background: #e8c47e;
+}
+
+/* =================================
+   WELCOME SECTION
+================================= */
+
+.lecturer-dashboard > section:nth-of-type(1),
+.student-dashboard > section:nth-of-type(1),
+.admin-dashboard > section:nth-of-type(1) {
+  background: white;
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.lecturer-dashboard > section:nth-of-type(1) h2,
+.student-dashboard > section:nth-of-type(1) h2,
+.admin-dashboard > section:nth-of-type(1) h2 {
   font-size: 24px;
 }
 
-.navbar p {
-  font-size: 16px;
-}
-.profile {
-  background-color: white;
-  margin: 30px auto;
-  padding: 25px;
-  max-width: 900px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* =================================
+   STATISTICS CARDS
+================================= */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 30px 0;
 }
 
-.profile h2 {
-  margin-bottom: 20px;
-  color: #1e293b;
+.dashboard-stats .course-card {
+  background: white;
+  border-left: 5px solid var(--accent);
+  padding: 28px;
 }
 
-.profile-info {
-  display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
+.dashboard-stats h3 {
+  font-size: 34px;
+  color: var(--primary);
 }
 
-.profile-info p {
-  font-size: 16px;
-}
+/* =================================
+   DASHBOARD SECTIONS
+================================= */
+
+.dashboard-section,
+.profile,
 .courses {
-  max-width: 900px;
-  margin: 30px auto;
+  background: white;
+  padding: 28px;
+  border-radius: 14px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
 }
 
+.dashboard-section h2,
 .courses h2 {
-  margin-bottom: 20px;
-  color: #1e293b;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
 }
 
-.course-form {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-  padding: 18px;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.course-form input {
-  flex: 1;
-  min-width: 180px;
-  padding: 10px 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-.course-form button,
-.course-card button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  background-color: #2563eb;
-  color: white;
-  cursor: pointer;
-}
-
-.course-form button:hover,
-.course-card button:hover {
-  opacity: 0.85;
-}
+/* =================================
+   COURSE CARDS
+================================= */
 
 .course-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
-  flex-wrap: wrap;
 }
 
 .course-card {
-  background-color: white;
-  padding: 25px;
+  background: white;
+  padding: 22px;
+  border: 1px solid var(--border);
   border-radius: 12px;
-  flex: 1;
-  min-width: 220px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.25s ease;
+  margin-bottom: 15px;
+}
+
+.course-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
 }
 
 .course-card h3 {
-  color: #2563eb;
+  color: var(--primary-light);
+  font-size: 19px;
+}
+
+.course-card h4 {
+  color: var(--text);
   margin-bottom: 10px;
 }
 
 .course-card p {
-  color: #475569;
-}.footer {
-  background-color: #1e293b;
-  color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
+  margin-bottom: 8px;
 }
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-    padding: 20px;
-  }
 
-  .profile {
-    margin: 20px;
-  }
+/* =================================
+   FORMS
+================================= */
 
-  .profile-info {
-    flex-direction: column;
-    gap: 15px;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
 
-  .courses {
-    margin: 20px;
-  }
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  background: white;
+  color: var(--text);
+  transition: 0.2s ease;
+}
 
-  .course-container {
-    flex-direction: column;
-  }
-}.progress-info {
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(30, 66, 107, 0.1);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+form button,
+.course-card button,
+.dashboard-section button {
+  width: fit-content;
+  background: var(--primary);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+form button:hover,
+.course-card button:hover,
+.dashboard-section button:hover {
+  background: var(--primary-light);
+}
+
+/* =================================
+   TABLES
+================================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+}
+
+th {
+  background: var(--primary);
+  color: white;
+  padding: 15px;
+  text-align: left;
+}
+
+td {
+  padding: 14px 15px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+tr:hover td {
+  background: #f8fafc;
+}
+
+/* =================================
+   PROGRESS BARS
+================================= */
+
+progress {
+  width: 100%;
+  height: 10px;
+  accent-color: var(--primary);
+  margin-top: 8px;
+}
+
+.progress-info {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin: 15px 0 8px;
 }
 
 .progress-bar {
-  width: 100%;
   height: 10px;
-  background-color: #e2e8f0;
+  background: var(--border);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .progress {
   height: 100%;
-  background-color: #2563eb;
+  background: var(--primary-light);
   border-radius: 10px;
-  transition: width 0.5s ease;
-}
-.course-card button {
-  margin-top: 15px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  background-color: #2563eb;
-  color: white;
-  cursor: pointer;
 }
 
-.course-card button:hover {
-  opacity: 0.85;
-}
-.course-card button:last-child {
-  background-color: #dc2626;
-  margin-left: 10px;
+/* =================================
+   ANNOUNCEMENTS
+================================= */
+
+.announcement-card {
+  background: #f8fafc;
+  border-left: 4px solid var(--accent);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
 }
 
-.course-card button:last-child:hover {
-  background-color: #991b1b;
+.announcement-card h3 {
+  margin-bottom: 8px;
 }
-/* Registration Page */
 
+/* =================================
+   LOGIN AND REGISTRATION
+================================= */
+
+.login-container,
 .register-container {
-  max-width: 420px;
-  margin: 80px auto;
-  padding: 35px;
-  background: #1c1c1c;
-  border-radius: 12px;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 430px;
+  margin: 70px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 15px 45px rgba(15, 23, 42, 0.12);
   text-align: center;
+  color: var(--text);
 }
 
+.login-container h2,
 .register-container h2 {
-  color: white;
+  font-size: 27px;
+  color: var(--primary);
   margin-bottom: 25px;
-  font-size: 26px;
 }
 
+.login-container form,
 .register-container form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.register-container input {
-  padding: 13px;
-  border: 1px solid #555;
-  border-radius: 6px;
-  background: #2b2b2b;
-  color: white;
-  font-size: 15px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.register-container input::placeholder {
-  color: #aaa;
-}
-
+.login-container button,
 .register-container button {
-  padding: 13px;
-  background: #8b0000;
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 700;
 }
 
+.login-container button:hover,
 .register-container button:hover {
-  background: #b00000;
+  background: var(--primary-light);
 }
 
+.login-container p,
 .register-container p {
-  color: white;
   margin-top: 15px;
 }
-/* LOGIN PAGE */
 
-.login-container {
-  width: 400px;
-  margin: 80px auto;
-  padding: 40px;
-  background: #1c1c1c;
-  border-radius: 20px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+/* =================================
+   PROFILE
+================================= */
+
+.profile {
+  max-width: 100%;
+}
+
+.profile-info {
+  display: flex;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+/* =================================
+   NOTIFICATIONS
+================================= */
+
+[role="status"],
+[role="alert"] {
+  padding: 13px 16px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+/* =================================
+   FOOTER
+================================= */
+
+.footer {
+  background: var(--primary);
   color: white;
   text-align: center;
+  padding: 22px;
+  margin-top: 40px;
 }
 
-.login-container h2 {
-  font-size: 32px;
-  margin-bottom: 30px;
+/* =================================
+   MOBILE RESPONSIVENESS
+================================= */
+
+@media (max-width: 900px) {
+  .lecturer-dashboard,
+  .student-dashboard,
+  .admin-dashboard {
+    padding: 20px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.login-container input,
-.login-container select {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 20px;
-  background: #292929;
-  border: 1px solid #555;
-  border-radius: 10px;
-  color: white;
-  font-size: 16px;
-  box-sizing: border-box;
+@media (max-width: 600px) {
+  .App {
+    padding: 15px;
+  }
+
+  .lecturer-dashboard,
+  .student-dashboard,
+  .admin-dashboard {
+    padding: 10px;
+  }
+
+  .lecturer-dashboard header,
+  .student-dashboard header,
+  .admin-dashboard header,
+  .navbar {
+    flex-direction: column;
+    text-align: center;
+    padding: 22px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+
+  h2 {
+    font-size: 19px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-section,
+  .profile,
+  .courses {
+    padding: 18px;
+  }
+
+  .login-container,
+  .register-container {
+    margin: 30px auto;
+    padding: 25px;
+  }
+
+  .course-container {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .profile-info {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+.auth-switch {
+  text-align: center;
+  margin: -45px auto 30px;
+  color: var(--muted);
 }
 
-.login-container button {
-  width: 100%;
-  padding: 15px;
-  background: #990000;
-  color: white;
+.auth-switch button {
+  background: none;
   border: none;
-  border-radius: 10px;
-  font-size: 18px;
+  color: var(--primary-light);
+  font-weight: 700;
+  margin-left: 6px;
   cursor: pointer;
 }
+/* ADMIN DASHBOARD NAVIGATION */
 
-.login-container button:hover {
-  background: #bd0000;
+.admin-dashboard nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 25px 0;
+  padding: 15px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.admin-dashboard nav button {
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--border);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.admin-dashboard nav button:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.admin-dashboard nav button:focus,
+.admin-dashboard nav button.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--accent);
+}
+
+/* ADMIN ACTION BUTTONS */
+
+.admin-dashboard button {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.admin-dashboard button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* MOBILE NAVIGATION */
+
+@media (max-width: 600px) {
+  .admin-dashboard nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-dashboard nav button {
+    width: 100%;
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+}
+/* =================================
+   ADMIN DASHBOARD NAVIGATION
+================================= */
+
+.admin-dashboard {
+  max-width: 1500px;
+  margin: auto;
+}
+
+/* Navigation container */
+
+.admin-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px;
+  margin: 28px 0;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+/* Navigation buttons */
+
+.admin-navigation button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 13px 18px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  background: transparent;
+  color: #475569;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+}
+
+/* Icons */
+
+.admin-navigation button span {
+  font-size: 18px;
+}
+
+/* Hover */
+
+.admin-navigation button:hover {
+  background: #f1f5f9;
+  color: var(--primary);
+}
+
+/* Active tab */
+
+.admin-navigation button.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(20, 45, 78, 0.18);
+}
+
+/* Admin dashboard heading */
+
+.admin-dashboard > h2 {
+  font-size: 26px;
+  margin: 25px 0 8px;
+}
+
+.admin-dashboard > p {
+  margin-bottom: 20px;
+}
+
+/* Dashboard overview cards */
+
+.admin-dashboard .dashboard-stats {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.admin-dashboard .dashboard-stats .course-card {
+  border-top: 4px solid var(--accent);
+  border-left: none;
+}
+
+/* Responsive navigation */
+
+@media (max-width: 768px) {
+  .admin-navigation {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-navigation button {
+    width: 100%;
+    padding: 12px 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .admin-navigation {
+    grid-template-columns: 1fr;
+  }
+}
+/* REFRESH DASHBOARD BUTTON */
+
+.refresh-dashboard-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 13px 24px;
+  margin: 20px 0 30px;
+
+  background: var(--primary);
+  color: white;
+
+  border: none;
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.25s ease;
+}
+
+.refresh-dashboard-btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.refresh-dashboard-btn:active {
+  transform: scale(0.97);
+}
+
+.refresh-dashboard-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.admin-dashboard button,
+.student-dashboard button,
+.lecturer-dashboard button {
+  font-family: inherit;
+}
+
+.admin-dashboard button:not(.active):not(.refresh-dashboard-btn) {
+  cursor: pointer;
+}
+/* REFRESH ANNOUNCEMENTS BUTTON */
+
+.refresh-announcements-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 13px 24px;
+  margin: 15px 0 25px;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  border: 1px solid var(--accent);
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: all 0.25s ease;
+}
+
+.refresh-announcements-btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(20, 45, 78, 0.15);
+}
+
+.refresh-announcements-btn:active {
+  transform: scale(0.97);
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase.js';
+import AnnouncementFeed from './AnnouncementFeed.jsx';
 
 function StudentDashboard() {
   const [student, setStudent] = useState(null);
@@ -13,7 +14,6 @@ function StudentDashboard() {
     loadDashboard();
   }, []);
 
-  // LOAD STUDENT DASHBOARD
   async function loadDashboard() {
     setLoading(true);
 
@@ -25,7 +25,6 @@ function StudentDashboard() {
       return;
     }
 
-    // Get student profile
     const { data: profile, error: profileError } = await supabase
       .from('profiles')
       .select('*')
@@ -40,7 +39,6 @@ function StudentDashboard() {
 
     setStudent(profile);
 
-    // Get departmental courses
     const { data: courseData, error: courseError } = await supabase
       .from('courses')
       .select('id, code, title, description, is_archived')
@@ -54,7 +52,6 @@ function StudentDashboard() {
 
     setCourses(courseData || []);
 
-    // Get student enrollments
     const { data: enrollmentData, error: enrollmentError } =
       await supabase
         .from('enrollments')
@@ -69,7 +66,6 @@ function StudentDashboard() {
 
     setEnrolled(enrollmentData || []);
 
-    // Get materials for enrolled courses
     const courseIds = (enrollmentData || []).map(
       enrollment => enrollment.course_id
     );
@@ -94,7 +90,6 @@ function StudentDashboard() {
     setLoading(false);
   }
 
-  // ENROLL IN COURSE
   async function enrollCourse(courseId) {
     setMessage('');
 
@@ -133,7 +128,6 @@ function StudentDashboard() {
     await loadDashboard();
   }
 
-  // DOWNLOAD LEARNING MATERIAL
   async function downloadMaterial(material) {
     const { data, error } = await supabase.storage
       .from('course-materials')
@@ -147,7 +141,6 @@ function StudentDashboard() {
     window.open(data.signedUrl, '_blank', 'noopener,noreferrer');
   }
 
-  // LOGOUT
   async function handleLogout() {
     await supabase.auth.signOut();
     window.location.href = '/';
@@ -157,7 +150,6 @@ function StudentDashboard() {
     return <h2>Loading Student Dashboard...</h2>;
   }
 
-  // Separate enrolled and available courses
   const myCourses = courses.filter(course =>
     enrolled.some(item => item.course_id === course.id)
   );
@@ -170,30 +162,27 @@ function StudentDashboard() {
   return (
     <div className="student-dashboard">
 
-      {/* HEADER */}
       <header>
         <h1>Student Dashboard</h1>
         <button onClick={handleLogout}>Logout</button>
       </header>
 
-      {/* WELCOME */}
       <section className="student-welcome">
         <h2>Welcome, {student?.full_name}!</h2>
         <p>Your academic learning space.</p>
       </section>
 
-      {/* ACADEMIC INFORMATION */}
+      {/* UNIVERSITY ANNOUNCEMENTS */}
+      <AnnouncementFeed />
+
       <section className="student-information">
         <h2>Academic Information</h2>
         <p>Faculty ID: {student?.faculty_id}</p>
         <p>Department ID: {student?.department_id}</p>
       </section>
 
-      {message && (
-        <p role="status">{message}</p>
-      )}
+      {message && <p role="status">{message}</p>}
 
-      {/* ENROLLED COURSES */}
       <section className="student-courses">
         <h2>My Enrolled Courses</h2>
 
@@ -227,7 +216,6 @@ function StudentDashboard() {
         )}
       </section>
 
-      {/* AVAILABLE COURSES */}
       <section className="student-courses">
         <h2>Available Courses</h2>
 
@@ -248,7 +236,6 @@ function StudentDashboard() {
         )}
       </section>
 
-      {/* LEARNING MATERIALS */}
       <section className="student-courses">
         <h2>My Learning Materials</h2>
 
@@ -266,9 +253,7 @@ function StudentDashboard() {
                 <p>Course: {course?.code || 'Course material'}</p>
                 <p>{material.description}</p>
 
-                <button
-                  onClick={() => downloadMaterial(material)}
-                >
+                <button onClick={() => downloadMaterial(material)}>
                   Download Material
                 </button>
               </div>

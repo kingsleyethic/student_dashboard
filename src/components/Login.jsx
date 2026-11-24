@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+ import { useState } from 'react';
 import { supabase } from '../lib/supabase.js';
 
 function Login() {
@@ -38,28 +37,31 @@ function Login() {
       return;
     }
 
+    // Verify account type
     if (profile.role !== accountType) {
       setMessage(`This account is not registered as a ${accountType}.`);
       await supabase.auth.signOut();
       setLoading(false);
       return;
     }
-setLoading(false);
-    
+
+    // Login successful
+    setMessage('Login successful!');
+    setLoading(false);
   }
 
   return (
-   <div className="login-container">
+    <div className="login-container">
       <h2>Welcome Back</h2>
 
       <form onSubmit={handleLogin}>
-
         <select
           value={accountType}
           onChange={(e) => setAccountType(e.target.value)}
         >
           <option value="student">Login as Student</option>
           <option value="lecturer">Login as Lecturer</option>
+          <option value="admin">Login as Admin</option>
         </select>
 
         <input
@@ -81,7 +83,6 @@ setLoading(false);
         <button type="submit" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </button>
-
       </form>
 
       {message && <p>{message}</p>}

@@ -1,3 +1,6 @@
+ 
+
+import AdminDashboard from './components/AdminDashboard.jsx';
  import { useState, useEffect } from 'react';
 import './App.css';
 
@@ -69,28 +72,35 @@ function App() {
   if (session && profile?.role === 'lecturer') {
     return <LecturerDashboard />;
   }
+  if (session && profile?.role === 'admin') {
+  return <AdminDashboard />;
+}
 
   return (
-    <div className="App">
-      {page === 'login' ? (
-        <>
-          <Login />
-          <p>
-            Don't have an account?
-            <button onClick={() => setPage('register')}>Register</button>
-          </p>
-        </>
-      ) : (
-        <>
-          <Registration />
-          <p>
-            Already have an account?
-            <button onClick={() => setPage('login')}>Login</button>
-          </p>
-        </>
-      )}
-    </div>
-  );
+  <div className="App">
+    {page === 'login' ? (
+      <>
+        <Login />
+        <p className="auth-switch">
+          Don't have an account?
+          <button onClick={() => setPage('register')}>
+            Register
+          </button>
+        </p>
+      </>
+    ) : (
+      <>
+        <Registration />
+        <p className="auth-switch">
+          Already have an account?
+          <button onClick={() => setPage('login')}>
+            Login
+          </button>
+        </p>
+      </>
+    )}
+  </div>
+);
 }
 
 export default App;
